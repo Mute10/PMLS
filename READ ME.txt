@@ -1,0 +1,24 @@
+Summary:
+
+• Purpose: Built to organize, sort, and manage project data from Day 1 to final delivery.
+• Scope: Designed to track the entire lifecycle of a project — tasks, updates, and progress milestones.
+• Efficiency: Engineered with O(n) time complexity in mind to ensure fast, scalable data handling.
+• Audience: Aimed at project managers and teams who need clarity, structure, and quick access to key data.
+• Backend Only: no frontend clutter.
+• Solution: PM Lifecycle System offers a centralized backend for managing the full project lifecycle, ensuring that every task, 
+update, and decision point is stored, accessible, and searchable.
+
+Tech Stack:
+
+• Python
+• FastAPI
+• PostgreSQL
+• SQLAlchemy
+• Docker 
+
+Why it Matters:
+
+• Replaces scattered tools like emails and spreadsheets with a centralized backend  
+• Eliminates manual tracking with optimized, structured logic  
+• Enables faster, data-driven decisions through organized project insights 
+
