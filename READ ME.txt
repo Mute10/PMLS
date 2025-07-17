@@ -1,7 +1,14 @@
-#Purpose 
-This API was built to simulate a real-world project management system using FastAPI and PostgreSQL. It showcases backend-only architecture, lifecycle tracking, and logic-driven development in a clean and testable structure.
+# 🗂️ Project Management Lifecycle API
 
-# Features 
+## Purpose 
+
+This API was built to simulate a real-world project management system using FastAPI and PostgreSQL. It replaces scattered tools like emails and spreadsheets by providing a centralized, backend-only system for tracking project lifecycles. Built for performance, the system enables faster, more structured decision-making for project managers and technical teams.
+
+
+## Features 
+
+Designed to eliminate manual tracking and promote data-driven clarity in managing projects.
+
 • Full CRUD Support – Create, read, update, and delete project records
 • Lifecycle Management – Organize projects by distinct lifecycle stages (e.g. planning, development, completed)
 • Clean Architecture – Decoupled routes, models, schemas, logic, and database layers
@@ -21,18 +28,22 @@ This API was built to simulate a real-world project management system using Fast
 git clone https://github.com/Mute10/project-management-api.git
 
 ## Usage 
+```bash
+cd project-management-api
+pip install -r requirements.txt
 Run the app with "uvicorn lifecycle:app -- reload"
 http://localhost:8000/docs
 
+
 ## Project Structure 
 ├── app/
-│ ├── database.py # PostgreSQL connection setup
-│ ├── models.py # SQLAlchemy models
-│ ├── schemas.py # Pydantic schemas
-│ ├── crud.py # CRUD operations
-│ ├── lifecycle.py # API routes for project lifecycle
-│ ├── logic.py # Logic utilities (sorting, DFS, regex, etc.)
-│ └── test_logic.py # Unit tests for logic module
+│  ├── database.py # PostgreSQL connection setup
+│  ├── models.py # SQLAlchemy models
+│  ├── schemas.py # Pydantic schemas
+│  ├── crud.py # CRUD operations
+│  ├── lifecycle.py # API routes for project lifecycle
+│  ├── logic.py # Logic utilities (sorting, DFS, regex, etc.)
+│  └── test_logic.py # Unit tests for logic module
 ├── .gitignore # Ignored files/folders
 ├── README.md # Project documentation
 
@@ -57,32 +68,22 @@ Contains standalone Python functions that demonstrate my growing understanding o
 
 
 ## Testing 
-Sorting logic
-Longest Common Prefix
-Regex parsing
-Binary Search
-Depth-First Search
-Memoization
-Custom exception raising
-ConnectionRefusedError handling
-Reference vs Value behavior
-logic.py run python -m unittest app/test_logic.py
-lifecycle.py run pytest app/lifecycle.py
+## Testing
+
+This project uses two separate test files for full backend coverage:
+
+- `test_logic.py` – Covers algorithmic and utility functions in `logic.py`
+- `lifecycle.py` – Contains pytest tests to validate lifecycle API routes
+
+### Run logic unit tests:
+```bash
+python -m unittest app/test_logic.py
+### Run API tests:
+pytest app/lifecycle.py
+
+
 
 ## Author
 Mike Siwik
-Self-taught backend developer focused on Python, FastAPI, and PostgreSQL.
-Building projects that combine clean architecture, testable logic, and real-world problem solving.
+I enjoy building backend projects that focus on clean architecture, testable logic, and real-world problem solving.
 GitHub: https://github.com/Mute10
-
-
-
-
-
-
-Why it Matters:
-
-• Replaces scattered tools like emails and spreadsheets with a centralized backend  
-• Eliminates manual tracking with optimized, structured logic  
-• Enables faster, data-driven decisions through organized project insights 
-
