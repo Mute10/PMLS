@@ -4,7 +4,6 @@
 
 This API was built to simulate a real-world project management system using FastAPI and PostgreSQL. It replaces scattered tools like emails and spreadsheets by providing a centralized, backend-only system for tracking project lifecycles. Built for performance, the system enables faster, more structured decision-making for project managers and technical teams.
 
-
 ## Features 
 
 Designed to eliminate manual tracking and promote data-driven clarity in managing projects.
@@ -27,13 +26,13 @@ Designed to eliminate manual tracking and promote data-driven clarity in managin
 ## Installation
 git clone https://github.com/Mute10/project-management-api.git
 
-## Usage 
+## Usage
 ```bash
 cd project-management-api
 pip install -r requirements.txt
-Run the app with "uvicorn lifecycle:app -- reload"
-http://localhost:8000/docs
-
+uvicorn lifecycle:app --reload
+```
+Visit: http://localhost:8000/docs
 
 ## Project Structure 
 ├── app/
@@ -66,21 +65,12 @@ Contains standalone Python functions that demonstrate my growing understanding o
 - Stack & Queue – Modeled with Python collections  
 - Graph (Adjacency List) – Basic graph representation and traversal
 
-
 ## Testing 
-## Testing
 
 This project uses two separate test files for full backend coverage:
 
 - `test_logic.py` – Covers algorithmic and utility functions in `logic.py`
 - `lifecycle.py` – Contains pytest tests to validate lifecycle API routes
-
-### Run logic unit tests:
-```bash
-python -m unittest app/test_logic.py
-### Run API tests:
-pytest app/lifecycle.py
-
 
 
 ## Author
