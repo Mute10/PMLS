@@ -1,5 +1,5 @@
 === Purpose ===
-This API was built to simulate a real-world project management system using FastAPI and PostgreSQL. It showcases backend architecture, lifecycle tracking, and logic-driven development in a clean and testable structure.
+This API was built to simulate a real-world project management system using FastAPI and PostgreSQL. It showcases backend-only architecture, lifecycle tracking, and logic-driven development in a clean and testable structure.
 
 === Features ===
 • Full CRUD Support – Create, read, update, and delete project records
@@ -18,11 +18,63 @@ This API was built to simulate a real-world project management system using Fast
 • Docker 
 
 === Installation ===
+git clone https://github.com/Mute10/project-management-api.git
+
 === Usage ===
+Run the app with "uvicorn lifecycle:app -- reload"
+http://localhost:8000/docs
+
 === Project Structure ===
+├── app/
+│ ├── database.py # PostgreSQL connection setup
+│ ├── models.py # SQLAlchemy models
+│ ├── schemas.py # Pydantic schemas
+│ ├── crud.py # CRUD operations
+│ ├── lifecycle.py # API routes for project lifecycle
+│ ├── logic.py # Logic utilities (sorting, DFS, regex, etc.)
+│ └── test_logic.py # Unit tests for logic module
+├── .gitignore # Ignored files/folders
+├── README.md # Project documentation
+
 === Logic Overview ===
+Contains standalone Python functions that demonstrate my growing understanding of algorithms, data structures, and real-world problem-solving patterns. Each function is designed to be modular and testable, serving as a reflection of what I've studied and practiced throughout this project.
+
+- Binary Search – Efficient lookup in sorted data  
+- Depth-First Search (DFS) – Traversal for graph-like or tree structures  
+- Subset Sum (Dynamic Programming) – Solving classic DP problems  
+- Longest Common Prefix – Optimized string matching  
+- Regex Parsing – Extracting values using regular expressions  
+- Memoization – Speeding up recursion with caching  
+- Reference vs. Value – Demonstrating mutation behavior in Python  
+- ConnectionRefusedError – Graceful error handling example  
+- Custom Exception – Manually raised and caught for clarity  
+- Set vs. Frozenset – Showing differences in mutability  
+- Sorting Techniques – Different approaches to sorting data  
+- CSV Export – Outputting structured data as CSV  
+- Linked List & Hash Map – Manual implementations  
+- Stack & Queue – Modeled with Python collections  
+- Graph (Adjacency List) – Basic graph representation and traversal
+
+
 === Testing === 
+Sorting logic
+Longest Common Prefix
+Regex parsing
+Binary Search
+Depth-First Search
+Memoization
+Custom exception raising
+ConnectionRefusedError handling
+Reference vs Value behavior
+logic.py run python -m unittest app/test_logic.py
+lifecycle.py run pytest app/lifecycle.py
+
 === Author ===
+Mike Siwik
+Self-taught backend developer focused on Python, FastAPI, and PostgreSQL.
+Building projects that combine clean architecture, testable logic, and real-world problem solving.
+[![GitHub](https://img.shields.io/badge/GitHub-Mute10-181717?logo=github)](https://github.com/Mute10)
+
 
 • Purpose: Built to organize, sort, and manage project data from Day 1 to final delivery.
 • Scope: Designed to track the entire lifecycle of a project — tasks, updates, and progress milestones.
