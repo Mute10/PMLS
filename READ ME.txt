@@ -1,4 +1,28 @@
-Summary:
+=== Purpose ===
+This API was built to simulate a real-world project management system using FastAPI and PostgreSQL. It showcases backend architecture, lifecycle tracking, and logic-driven development in a clean and testable structure.
+
+=== Features ===
+• Full CRUD Support – Create, read, update, and delete project records
+• Lifecycle Management – Organize projects by distinct lifecycle stages (e.g. planning, development, completed)
+• Clean Architecture – Decoupled routes, models, schemas, logic, and database layers
+• Custom Logic Engine – logic.py demonstrates advanced algorithms and problem-solving skills
+• Built-in Documentation – Swagger UI available at /docs for quick testing and exploration
+• Test Coverage – Includes unit tests for key logic functions using unittest and pytest
+• Docker-Ready – Optional Docker support for containerized deployment
+
+=== Tech Stack ===
+• Python
+• FastAPI
+• PostgreSQL
+• SQLAlchemy
+• Docker 
+
+=== Installation ===
+=== Usage ===
+=== Project Structure ===
+=== Logic Overview ===
+=== Testing === 
+=== Author ===
 
 • Purpose: Built to organize, sort, and manage project data from Day 1 to final delivery.
 • Scope: Designed to track the entire lifecycle of a project — tasks, updates, and progress milestones.
@@ -10,11 +34,7 @@ update, and decision point is stored, accessible, and searchable.
 
 Tech Stack:
 
-• Python
-• FastAPI
-• PostgreSQL
-• SQLAlchemy
-• Docker 
+
 
 Why it Matters:
 
