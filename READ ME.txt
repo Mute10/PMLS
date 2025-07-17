@@ -1,11 +1,9 @@
 # 🗂️ Project Management Lifecycle API
 
 ## Purpose 
-
 This API was built to simulate a real-world project management system using FastAPI and PostgreSQL. It replaces scattered tools like emails and spreadsheets by providing a centralized, backend-only system for tracking project lifecycles. Built for performance, the system enables faster, more structured decision-making for project managers and technical teams.
 
 ## Features 
-
 Designed to eliminate manual tracking and promote data-driven clarity in managing projects.
 
 • Full CRUD Support – Create, read, update, and delete project records
