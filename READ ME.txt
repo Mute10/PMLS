@@ -1,7 +1,7 @@
-=== Purpose ===
+#Purpose 
 This API was built to simulate a real-world project management system using FastAPI and PostgreSQL. It showcases backend-only architecture, lifecycle tracking, and logic-driven development in a clean and testable structure.
 
-=== Features ===
+# Features 
 • Full CRUD Support – Create, read, update, and delete project records
 • Lifecycle Management – Organize projects by distinct lifecycle stages (e.g. planning, development, completed)
 • Clean Architecture – Decoupled routes, models, schemas, logic, and database layers
@@ -10,21 +10,21 @@ This API was built to simulate a real-world project management system using Fast
 • Test Coverage – Includes unit tests for key logic functions using unittest and pytest
 • Docker-Ready – Optional Docker support for containerized deployment
 
-=== Tech Stack ===
+## Tech Stack 
 • Python
 • FastAPI
 • PostgreSQL
 • SQLAlchemy
 • Docker 
 
-=== Installation ===
+## Installation
 git clone https://github.com/Mute10/project-management-api.git
 
-=== Usage ===
+## Usage 
 Run the app with "uvicorn lifecycle:app -- reload"
 http://localhost:8000/docs
 
-=== Project Structure ===
+## Project Structure 
 ├── app/
 │ ├── database.py # PostgreSQL connection setup
 │ ├── models.py # SQLAlchemy models
@@ -36,7 +36,7 @@ http://localhost:8000/docs
 ├── .gitignore # Ignored files/folders
 ├── README.md # Project documentation
 
-=== Logic Overview ===
+## Logic Overview 
 Contains standalone Python functions that demonstrate my growing understanding of algorithms, data structures, and real-world problem-solving patterns. Each function is designed to be modular and testable, serving as a reflection of what I've studied and practiced throughout this project.
 
 - Binary Search – Efficient lookup in sorted data  
@@ -56,7 +56,7 @@ Contains standalone Python functions that demonstrate my growing understanding o
 - Graph (Adjacency List) – Basic graph representation and traversal
 
 
-=== Testing === 
+## Testing 
 Sorting logic
 Longest Common Prefix
 Regex parsing
@@ -69,22 +69,14 @@ Reference vs Value behavior
 logic.py run python -m unittest app/test_logic.py
 lifecycle.py run pytest app/lifecycle.py
 
-=== Author ===
+## Author
 Mike Siwik
 Self-taught backend developer focused on Python, FastAPI, and PostgreSQL.
 Building projects that combine clean architecture, testable logic, and real-world problem solving.
-[![GitHub](https://img.shields.io/badge/GitHub-Mute10-181717?logo=github)](https://github.com/Mute10)
+GitHub: https://github.com/Mute10
 
 
-• Purpose: Built to organize, sort, and manage project data from Day 1 to final delivery.
-• Scope: Designed to track the entire lifecycle of a project — tasks, updates, and progress milestones.
-• Efficiency: Engineered with O(n) time complexity in mind to ensure fast, scalable data handling.
-• Audience: Aimed at project managers and teams who need clarity, structure, and quick access to key data.
-• Backend Only: no frontend clutter.
-• Solution: PM Lifecycle System offers a centralized backend for managing the full project lifecycle, ensuring that every task, 
-update, and decision point is stored, accessible, and searchable.
 
-Tech Stack:
 
 
 
