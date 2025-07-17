@@ -1,12 +1,27 @@
- #http://localhost:8000/docs
 from fastapi import FastAPI, Header, Depends, HTTPException, Depends
+from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 from database import Project, Base 
 from schematics import ProjectCreate, Project as ProjectPydantic
 from tools import SessionLocal, engine
 import crud
 from crud import update_project
+from logic import Monitoring
+from pydantic import BaseModel
+from typing import Union, List, Dict
 
+
+pm_phase = Monitoring("initiation", "planning", "execution", "control")
+pm_phase.load_tasks([
+    ["urgent meeting"],
+    ["project charter on starlink"],
+    ["business Scope for starlink HQ building"],
+    ["important starlink deadline"]
+])
+
+
+class TaskInput(BaseModel):
+    task: Union[str, List[Union[str, List[str]]], Dict[str, str]]
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
 
@@ -14,7 +29,7 @@ def verify_token(x_token: str = Header(...)):
     if x_token != "supersecrettoken":
         raise HTTPException(status_code = 401, detail ="Invalid token")
     
-# Dependency: Get DB session
+
 def get_db():
     db = SessionLocal()
     try:
@@ -22,11 +37,72 @@ def get_db():
     finally:
         db.close()
 
-@app.get("/metrics") #where do i use limit, offset and queries?
-def get_matrics(db: Session = Depends(get_db)):
+
+@app.get("/tasks/review")
+def get_reviewed_tasks():
+    finished, unfinished = pm_phase.review_tasks()
+    return {
+        "finished": finished,
+        "unfinished": unfinished
+    }
+
+@app.get("/tasks/list")
+def list_all_tasks():
+    return {"all_tasks": pm_phase.tasks}
+
+@app.delete("/tasks/clear")
+def clear_tasks():
+    pm_phase.tasks.clear()
+    return {"message": "All tasks have been cleared."}
+
+@app.get("/tasks/count")
+def count_tasks():
+    return {"total_tasks": len(pm_phase.tasks)}
+
+
+
+@app.get("/", include_in_schema = False)
+def redirect_to_docs():
+    return RedirectResponse(url="/docs")
+
+@app.post("/task/add")
+def add_task(task_input: TaskInput):
+    try:
+        pm_phase.load_tasks(task_input.task)
+        return {"message": "Task(s) added successfully."}
+    except ValueError as e:
+        return {"error": str(e)}
+
+
+#Metrics block features:
+# · Total Project Count, Last Updated Timestamp
+# · Pagination, Clean .desc() usage, Task Info Returned
+@app.get("/metrics")
+def get_metrics(
+    limit: int = 5,
+    offset: int = 0,
+    db: Session = Depends(get_db)
+):
     total = db.query(Project).count()
-    last_updated = db.query(Project).order_by(Project.update_at_desc().first())
-    return {"total_projects": total, "last_updated": last_updated.updated_at if last_updated else None}
+
+    recent_projects = (
+        db.query(Project)
+        .order_by(Project.start_date.desc())
+        .offset(offset)
+        .limit(limit)
+        .all()
+    )
+
+    recent_data = [
+        {"id": p.id, "name": p.name, "updated_at": p.updated_at}
+        for p in recent_projects
+    ]
+    return {
+        "total_projects": total,
+        "recent_updates": recent_data
+    }
+
+
 
 @app.post("/projects", summary = " ", operation_id="createProjects", response_model=ProjectPydantic)
 def create_project(project: ProjectCreate, db: Session = Depends(get_db)):
@@ -55,70 +131,16 @@ def delete_project_by_id(project_id: int, db: Session = Depends(get_db)):
     deleted = crud.delete_project(db, project_id)
     if not deleted:
         raise HTTPException(status_code=404, detail = "Project not found")
-    return {"message": "Project deleted successfully"}
+    return { "Project deleted successfully"}
 
 #root endpoint
-@app.get("/root", summary = " ", operation_id="getRoot")
+@app.get("/", summary = "Root Health check", operation_id="getRoot")
 def read_root():
- return {"message": "Project Management Lifecycle System is live"}
+ return {"Project Management Lifecycle System is live"}
 
-
-
-
-
-
-
-
-globalSolution = (33, 300, 0.30)
-
-class CurrentStatus:
-    def __init__(self, time, budget):
-        self.time = time 
-        self.budget = budget
-    def businessSolution(overtime):
-        annualSalary, OT, jrPay = 150000, 30, 60000
-        result = 0
-        if OT > jrPay:
-            jrPay += (OT * 8)
-            annualSalary += (OT * 8)
-            result += (annualSalary + jrPay)
-        else:
-            OT -= OT
-            result -= (annualSalary - jrPay)
-        return result
-
-class Goals(CurrentStatus):
-    def __init__(self, time, budget, strategy):
-        super().__init__(time, budget)
-        self.strategy = strategy
-    def supplyChains(cocaCola, brewery):
-        result = 0
-        supplyCount = 0
-        global globalSolution
-        newSolution = globalSolution + (99,)
-        for c in range(len(cocaCola)):
-            for b in range(len(brewery)):
-                if cocaCola >  brewery:
-                    supplyCount += 2
-                    cocaCola.pop()
-                    brewery.pop()
-                    result += supplyCount
-                else:
-                    pass
-            return supplyCount
-        return result
-    supplyChains([1,2,1,2,1,2], [12, 12, 12, 15])      
-
-
-
-Goals(12, 30900, "waterfall")
-CurrentStatus("well", "great")
-
-class Objectives:
-    project_team = {"Mike Taktarov" : "Vice President of Operations",
-                        "Patrick Kruzchev" : "Project Mangager",
-                        "Jesse Frederick" : "Jr. Project Manager",
-                        "Brad Wolf" : "IT Support Specialist",
-                        "Fumiko Takushima" : "Sony Tech Support"
-
-                       }
+"""
+how to redirect people to different sites
+@app.get("/github", summary="Redirect to my GitHub")
+def redirect_to_github():
+    return RedirectResponse(url="https://github.com/your-username")
+    """
